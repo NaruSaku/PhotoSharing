@@ -1,0 +1,31 @@
+
+<div class="cs142-user-list-side">
+    <h2 class="cs142-user-list-title">User List</h2>
+    <div ng-repeat="user in userList.userNames" class="cs142-user-list-a">
+        <a ng-href="#!users/{{user._id}}">{{user.first_name}} {{user.last_name}}</a>
+        <a class="cs142-user-list-bubble1" ng-href="{{'#!/photos/' + user._id}}">{{user.photoLength}}</a>
+        <div class="cs142-user-list-bubble2" ng-click="userList.showRecentActivity($event,user)">?</div>
+    </div>
+
+    <div>
+        <md-button md-no-ink class="md-primary cs142-userList-chatButton" ng-click = "userList.chat()">
+            Chat With Friends
+        </md-button>
+    </div>
+
+    <div class="cs142-user-favoritePhotos">
+        <img ng-src="images/album.jpg" ng-click="userList.showFavorite()" class="cs142-user-img">
+        <div class="cs142-user-favorite">
+            <md-button class="cs142-user-list-button" ng-click="userList.showFavorite()" >
+                Favorite Photos
+            </md-button>
+            <div class="cs142-userList-photos">
+                <div ng-repeat="photo in userList.list">
+                    <img ng-src = "images/{{photo.file_name}}" class="thumbnail cs142-userList-photo">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</div>

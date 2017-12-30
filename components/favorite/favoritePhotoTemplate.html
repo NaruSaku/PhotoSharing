@@ -1,0 +1,28 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>{{favoritePhoto.photo.date_time}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="favoritePhoto.cancel()">
+                    <img ng-src="images/cross.png" aria-label="Close dialog"></img>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+
+                <img style="margin: auto; max-width: 100%;" alt="Lush mango tree" ng-src="images/{{favoritePhoto.photo.file_name}}">
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="favoritePhoto.link_to()" md-autofocus>
+                More on His/Her page
+            </md-button>
+            <span flex></span>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

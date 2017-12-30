@@ -1,0 +1,26 @@
+<md-dialog style="min-width:500px"aria-label="Message History">
+    <form ng-cloak>
+        <md-toolbar>
+            <h2>{{history.receiver ? history.receiver : "Group"}}</h2>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="chat-room-wrapper">
+                <div class="chat-room panel panel-success" style="width:100%;margin:0">
+                    <div class="message-wrapper panel-body" style="position:initial">
+                        <history self="history.login_name"  info="message" ng-repeat="message in history.messages"></history>
+                    </div>
+                    <div ng-show="history.messages.length === 0">
+                        No Record
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button class="md-primary"ng-click="history.cancel()">
+                Close
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
+

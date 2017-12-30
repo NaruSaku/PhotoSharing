@@ -1,0 +1,5 @@
+<div class="user"> 
+	<img class="avatar" ng-src="images/{{info.profile}}"></img>
+	<span class="nickname">{{info.login_name?info.login_name:"Group"}}</span>
+    <span class="unread" ng-show="info.hasNewMessage && !iscurrentreceiver">[Unread]</span>
+</div>

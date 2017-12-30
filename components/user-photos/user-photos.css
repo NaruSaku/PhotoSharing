@@ -1,0 +1,197 @@
+.cs142-photos-list{
+    padding:10px;
+}
+
+.cs142-photos-photo {
+    padding: 10px;
+    margin: 12px;
+    background-color: rgba(0,82,170,0.7);
+    border-radius: 10px;
+}
+
+.cs142-photos-photoDate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+/*.cs142-photos-image {*/
+    /*width: 100%;*/
+/*}*/
+
+.cs142-photos-comments{
+    border: solid;
+}
+
+.cs142-photos-comment {
+    margin: 5px;
+    background-color: azure;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.cs142-photos-commentHead{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: 800;
+}
+
+.cs142-photos-comment2{
+    font-size: 22px;
+}
+
+.cs142-photos-viewTimes{
+    font-size: 15px;
+}
+
+.cs142-photos-commentTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cs142-photos-commentor{
+    font-family: "Times New Roman";
+    font-size: 22px;
+}
+
+.cs142-photos-addComment{
+    margin: 5px;
+}
+
+.cs142-photos-text{
+    width:-webkit-fill-available;
+    margin-bottom: 5px;
+}
+
+.cs142-photos-content{
+    word-wrap:break-word;
+    text-align: justify;
+}
+
+.cs142-photos-deleteComment{
+    margin-top: 5px;
+}
+
+.cs142-photos-buttons{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+.cs142-photos-noPhotos{
+    display: flex;
+    font-size: 50px;
+    text-align: center;
+    justify-content: center;
+}
+
+.cs142-photos-photoLike{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    margin: 5px 20px;
+}
+.cs142-photos-like img{
+    width: 40px;
+    height:40px;
+    cursor: pointer;
+}
+
+.cs142-photos-liked{
+    font-weight: 800;
+    color: brown;
+}
+
+.cs142-photos-disliked{
+    font-weight: 800;
+}
+
+img#cs142-photos-image {
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; padding: %;
+    background: url("/images/cardboard.jpg") repeat;
+    background-size: contain;
+    border: 8px solid #333;
+    box-shadow: 0 0 0 50px rgba(125,135,18,0.3) inset,
+    0 0 20px rgba(0,0,0,0.8) inset;
+}
+
+.user-search {
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    background-clip: padding-box;
+    outline: 0;
+    color: black;
+    background-color: white;
+    border-color: blue;
+    list-style-type:none;
+    padding-left: 20px;
+    width: 300px;
+}
+
+.user-search .list-group-item.active {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #428bca;
+}
+
+.user-search .user-photo {
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+.user-search .list-group-item {
+    padding: 5px;
+    display: flex;
+    align-items:center;
+}
+
+.user-search:hover {
+    cursor: pointer;
+}
+
+.fake-input {
+    width: 100%;
+    height: 50px;
+}
+
+mentio-menu{
+    display: block;
+}
+
+.cs142-photos-pagination{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/*ul li:before {
+  position: relative;
+  top:2px;
+  content: '';
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  background-size: 15px;
+  background-image: url("/images/heart.png");
+  background-repeat: no-repeat;
+}*/
+
+
+
+
+

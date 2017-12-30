@@ -1,0 +1,15 @@
+.cs142-activity-activity{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    line-height: 10px;
+}
+.cs142-activity-title{
+    font-weight: 800;
+    font-size:30px;
+}
+.cs142-activity-photo{
+    margin: auto 15px;
+}
+
+.md-toolbar-tools{}

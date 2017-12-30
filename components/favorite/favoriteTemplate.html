@@ -1,0 +1,11 @@
+<div class="cs142-favorite-photos">
+    <div ng-show="favorite.list.length === 0" class="cs142-photos-noPhotos">Search the photos and find your favorites!</div>
+    <div ng-repeat = "photo in favorite.list">
+        <div class="cs142-favorite-img-div">
+            <img ng-src = "images/{{photo.file_name}}" class="thumbnail cs142-favorite-photo"
+                 ng-click="favorite.showDetail(photo)"ng-mouseover="favorite.showDelete()" ng-mouseleave="favorite.hideDelete()" >
+            <img src="images/cross.png" class="cs142-favorite-delete {{favorite.show}}" ng-click="favorite.delete(photo)"/>
+        </div>
+
+    </div>
+</div>

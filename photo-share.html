@@ -1,0 +1,257 @@
+<!doctype html>
+<html ng-app="cs142App" ng-controller="MainController">
+<head>
+
+    <title>{{main.title || "CS142 Class Project"}}</title>
+
+    <link href="./node_modules/angular-material/angular-material.css" rel="stylesheet" />
+
+    <script src="./node_modules/angular/angular.js" type="text/javascript" ></script>
+    <script src="./node_modules/angular-animate/angular-animate.js" type="text/javascript" ></script>
+    <script src="./node_modules/angular-aria/angular-aria.js" type="text/javascript" ></script>
+    <script src="./node_modules/angular-material/angular-material.js" type="text/javascript" ></script>
+    <script src="./node_modules/angular-resource/angular-resource.js"></script>
+    <script src="./node_modules/angular-cookies/angular-cookies.js"></script>
+    <script src="./node_modules/angular-sanitize/angular-sanitize.js"></script>
+    <script src="./node_modules/angular-route/angular-route.js"></script>
+
+    <script src="mainController.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+
+    <script src="components/user-list/user-listController.js"></script>
+    <script src="components/user-list/DialogController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/user-list/user-list.css" />
+
+    <script src="components/user-detail/user-detailController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/user-detail/user-detail.css" />
+
+    <script src="components/user-photos/user-photosController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/user-photos/user-photos.css" />
+
+    <script src="components/login-register/login-registerController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/login-register/login-register.css"/>
+
+    <script src="components/comment/commentController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/comment/comment.css"/>
+
+    <script src="components/activity/activityController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/activity/activity.css"/>
+
+    <script src="components/favorite/favoriteController.js"></script>
+    <script src="components/favorite/favoritePhotoController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/favorite/favorite.css"/>
+
+    <script src="components/user-detail/profileController.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+
+
+    <script src="components/visibility-control/visibility-controlController.js"></script>
+    <script src="components/login-register/authenticationController.js"></script>
+
+    <script src="components/socket/socketController.js"></script>
+    <link rel="stylesheet" type="text/css" href="components/socket/socket.css"/>
+
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+
+    <script src="./my-pagination.js"></script>
+    <link rel="stylesheet" type="text/css" href="my-pagination.css"/>
+
+    <script src="./mentio.js"></script>
+    <link rel="stylesheet" href="lib/bootstrap/3.2.0/css/bootstrap.css">
+    <!-- <script src="https://cdn.bootcss.com/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls.min.js"></script> -->
+    <script src="bootstrap.min.js"></script>
+
+    <script src="./node_modules/ng-toast/dist/ngToast.js"></script>
+    <link rel="stylesheet" type="text/css" href="./node_modules/ng-toast/dist/ngToast.min.css"/>
+
+   <!--  // <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    // <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> -->
+    <script src="jquery.min.js"></script>
+    <script src="socket.io.js"></script>
+
+</head>
+
+<body layout="column">
+
+    <md-toolbar layout="row" ng-if="main.loggedInUser !== undefined">
+        <div class="cs142-main-toolbar">
+            <div class="cs-142-main-leftSide">
+                <md-button hide-gt-sm ng-click="main.showUserList()">
+                    <div class="material-icons">more_vert</div>
+                </md-button>
+                <!--The left side of the md-toolbar should have your name.-->
+                <div class="cs142-main-author_version">
+                    <div class="cs142-main-author">Welcome, {{main.loggedInUser.first_name}}!</div>
+                    <!-- <div class="cs142-main-version">Version: {{main.version}}</div> -->
+                </div>
+            </div>
+            <!--This part shows the logged in user-->
+
+            <div ng-show="main.loggedInUser">
+                <form >
+                    <div class="file-input" >
+                        <p class="input-container" >
+                            Upload
+                            <input type="file" accept="image/*" onchange="angular.element(this).scope().main.inputFileNameChanged(this)">
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <div ng-show="main.loggedInUser" >
+                <div class="file-input" ng-click="main.showActivities()">
+                    <p class="input-container">
+                        Activities
+                    </p>
+                </div>
+            </div>
+
+            <!-- <div ng-show="main.loggedInUser" class="cs142-main-barElement" title="Only show one picture each page">
+                <input type="checkbox" id="advanced-feature">Advanced Feature
+            </div> -->
+
+            <div class="cs-142-main-rightSide" ng-show="main.loggedInUser">
+                {{main.appContext}}&nbsp;&nbsp;
+            </div>
+
+            <form ng-submit="main.submit()" class="cs142-main-searchComment" ng-show="main.loggedInUser">
+                <span><input ng-model="main.comment" class="cs142-main-comment"></span>
+                <span><button>Search Comment</button></span>
+            </form>
+            <md-menu-bar >
+              <md-menu >
+                <div class="cs142-main-setting" ng-click="$mdMenu.open()"></div>
+                <md-menu-content class="cs142-main-menu">
+                  <md-menu-item>
+                    <md-button ng-click="main.searchFriend()">
+                      Search Friend
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button ng-click="main.showFriendRequest()" style="display:flex;justify-content:space-between">
+                      <span>Friend Request</span>
+                      <span style="color:red">{{main.loggedInUser.friend_request_list.length}}</span>
+                    </md-button>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-menu>
+                      <md-button ng-click="$mdMenu.open()">New</md-button>
+                      <md-menu-content>
+                        <md-menu-item><md-button ng-click="">Document</md-button></md-menu-item>
+                        <md-menu-item><md-button ng-click="">Spreadsheet</md-button></md-menu-item>
+                        <md-menu-item><md-button ng-click="">Presentation</md-button></md-menu-item>
+                        <md-menu-item><md-button ng-click="">Form</md-button></md-menu-item>
+                        <md-menu-item><md-button ng-click="">Drawing</md-button></md-menu-item>
+                      </md-menu-content>
+                    </md-menu>
+                  </md-menu-item>
+                  <md-menu-item>
+                    <md-button  ng-click="main.logout()">
+                      Logout
+                    </md-button>
+                  </md-menu-item>
+                </md-menu-content>
+              </md-menu>
+              
+            </md-menu-bar>
+
+            
+
+            <div ng-show="!main.loggedInUser">
+                <p class="md-subhead">
+                    Login
+                </p>
+            </div>
+
+        </div>
+    </md-toolbar>
+    <toast></toast>
+
+    <div class="container" flex layout="row">
+        <md-sidenav ng-if="main.loggedInUser" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="users"  class="md-whiteframe-z2 cs142-main-sidenav">
+            <div ng-include="'components/user-list/user-listTemplate.html'" ng-controller="UserListController"></div>
+        </md-sidenav>
+        <md-content flex id="content">
+            <div ng-view style="height:100%"></div>
+        </md-content>
+    </div>
+</body>
+</html>
+
+<script type="text/ng-template" id="modal.html"> 
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">
+            Search Friend !
+        </h3>
+    </div>
+    <div class="modal-body">
+        <div align="center">
+            <input ng-model="selected">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">
+            Search
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()">
+            Exit
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="addFriendmodal.html"> 
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">
+            Add Friend !
+        </h3>
+    </div>
+    <div class="modal-body">
+        <div align="center">
+            <div ng-repeat="friend in list" class="cs142-main-friendList">
+                <img ng-src="images/{{friend.profile[friend.profile.length - 1]}}" class="cs142-main-friend_profile">
+                <span class="cs142-main-friend_name">{{friend.first_name}} {{friend.last_name}}</span>
+                <md-button ng-click="choose(friend._id)">Send Friend Request</md-button>
+            </div>
+            <div ng-show="list.length === 0" class="cs142-main-friend_name">
+                No such user.
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">
+            Confirm
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()">
+            Exit
+        </button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="friendRequest.html"> 
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">
+            Friend Request
+        </h3>
+    </div>
+    <div class="modal-body">
+        <div align="center">
+            <div ng-repeat="friend in list" class="cs142-main-friendList">
+                <img ng-src="images/{{friend.profile[friend.profile.length - 1]}}" class="cs142-main-friend_profile">
+                <span class="cs142-main-friend_name">{{friend.first_name}} {{friend.last_name}}</span>
+                <md-button ng-click="accept(friend._id)">Accept</md-button>
+            </div>
+            <div ng-if="list.length === 0">
+                <span class="cs142-main-friend_name">Currently No Request</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">
+            Confirm
+        </button>
+        <button class="btn btn-warning" ng-click="cancel()">
+            Exit
+        </button>
+    </div>
+</script>

@@ -1,0 +1,133 @@
+/*
+CSS for the CS142 project #5 main page
+
+Since CSS uses a global name space for classes we should use class names starting with
+cs142-main- here.
+*/
+
+.cs142-main-toolbar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+    width: 100%;
+}
+
+.md-button {
+    min-width: 1%;
+    min-height: 1%;
+}
+
+.cs142-main-author{
+    font-size: 24px;
+    font-family: "Times New Roman";
+}
+
+.cs142-main-version {
+    font-size: 18px;
+}
+
+
+.cs-142-main-leftSide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 1%;
+}
+
+.cs-142-main-rightSide{
+    font-size: 20px;
+    display: flex;
+    font-weight: 700;
+}
+
+.cs142-main-barElement{
+    font-size: 18px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.cs142-main-searchComment{
+    display: inline-flex;
+    align-items: center;
+}
+
+.cs142-main-comment{
+    width: 100px;
+    margin-right: 5px;
+}
+.cs142-main-sidenav{
+    background:url("/images/demo-1-bg.jpg");
+}
+
+md-content{
+    background:url("/images/background.jpeg") repeat;
+}
+
+input[type="file"] {
+    color: transparent;
+    width:100px;
+}
+/*Reference: https://codepen.io/zengkan0703/pen/NpyxbM*/
+.file-input{
+    line-height:30px;
+    position:relative;
+    margin-top:10px;
+}
+.file-input .input-container{
+    width:100px;
+    height:30px;
+    text-align:center;
+    background:#3778d8;
+    color:#fff;
+    border-radius:3px;
+    cursor: pointer;
+}
+.file-input input{
+    position:absolute;
+    left:0;
+    top:0;
+    opacity:0;
+}
+.file-input #name{
+    position:absolute;
+    left:100px;
+    top:0;
+    font-size:12px;
+    color:#666;
+}
+
+.cs142-main-setting{
+    width:40px; 
+    height:40px; 
+    border:0; 
+    background:url("/images/Setting.png");
+}
+md-menu-content[width="5"]{
+    min-width: 200px;
+}
+md-menu-content.md-menu-bar-menu.md-dense{
+    padding: 0;
+}
+
+.cs142-main-friendList{
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.cs142-main-friend_name{
+    font-size:20px;
+    font-weight: 800;
+}
+.cs142-main-friend_profile{
+    width:34px;
+    border-radius: 50%;
+}
+
+.cs142-main-friendRequestButton{
+    display: flex;
+    justify-content:space-between;
+}
+

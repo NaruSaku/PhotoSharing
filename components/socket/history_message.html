@@ -1,0 +1,11 @@
+<div class="normal-message" ng-class="{others:self !== info.from,self:self === info.from}">
+    <div class="name-wrapper">
+        <span>{{info.from}}@ </span>
+        <span>{{info.date}}</span>
+    </div>
+    <div class="content-wrapper">
+        <span class="content">{{info.text}}</span>
+        <img class="avatar" ng-src="images/{{info.profile}}">
+    </div>
+</div>
+

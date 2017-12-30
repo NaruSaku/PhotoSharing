@@ -1,0 +1,31 @@
+<md-dialog aria-label="Recent Activity" ng-show="dialog.show">
+<form ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Recent Activity of {{dialog.user.first_name}} {{dialog.user.last_name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="dialog.cancel()">
+                <img ng-src="images/cross.png" aria-label="Close dialog"></img>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <p>{{dialog.user.first_name}} {{dialog.user.last_name}} {{dialog.user.recentActivity.activity}}</p>
+        </div>
+        <div ng-show="dialog.user.recently_upload_photo" class = "show">
+            <img ng-src="{{dialog.user.recent_uploaded_photo}}" class = "thumbnail" style="margin: auto; max-width: 100%;"/>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-click=dialog.link_to("all") md-autofocus>
+            See the 20 recent activities of all the users
+        </md-button>
+        <md-button ng-click=dialog.link_to() md-autofocus class="md-primary">
+            More on His/Her page
+        </md-button>
+    </md-dialog-actions>
+</form>
+</md-dialog>

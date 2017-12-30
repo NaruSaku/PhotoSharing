@@ -1,0 +1,29 @@
+<md-dialog>
+    <!--Reference:https://material.angularjs.org/latest/api/service/$mdDialog-->
+    <form ng-cloak>
+        <md-toolbar>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h1>Specify a list of users that can see the photo</h1>
+                <md-checkbox ng-model="visibility.select_all" ng-change="visibility.selectAll()" >
+                    All people on the list
+                </md-checkbox>
+                <div ng-repeat="user in visibility.users">
+                    <md-checkbox class="green" ng-model="user.checked" ng-change="visibility.selectOne()">
+                        {{user.first_name + " " + user.last_name}}
+                    </md-checkbox>
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions>
+            <md-button class="md-primary"ng-click="visibility.cancel()">
+                Everybody can see your photo
+            </md-button>
+            <md-button ng-click="visibility.answer()">
+                People on the list can see your photo
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

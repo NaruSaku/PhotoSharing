@@ -1,0 +1,73 @@
+<div class="cs142-detail-properties">
+    <div class="cs142-detail-name">
+        <div class="cs142-detail-title">
+            <img ng-src="images/{{userDetail.profile.file_name}}" class="cs142-detail-profile" ng-click="userDetail.changeProfile()">
+            <span class="cs142-detail-userName">{{userDetail.fullName}}</span>
+            <span class="cs142-detail-userLocation">{{userDetail.user.location}}</span>
+        </div>
+        <md-button class="md-warn md-raised" ng-show="userDetail.hasAuthority()"ng-click="userDetail.deleteAccount($event)" >
+            Delete Account
+        </md-button>
+        <img ng-src="/images/friend.png" ng-show="userDetail.isFriend()" class="cs142-detail-friendIcon" title="You are friends!">
+    </div>
+    <a ng-href="{{'#!/photos/' + userDetail.user._id}}">
+        <span class="cs142-detail-photosLink">See the photos!</span>
+    </a>
+    <br>
+
+    <span class="cs142-detail-property"> Occupation: </span>
+    <span class="cs142-detail-content">{{userDetail.user.occupation}}</span>
+
+    <br>
+
+    <span class="cs142-detail-property"> Description: </span>
+    <span class="cs142-detail-content">{{userDetail.user.description}}</span>
+
+    <br>
+
+    <div class="cs142-detail-photos">
+        <div class="cs142-detail-thumbnail" ng-show="userDetail.mostRecentlyPhoto !== undefined">
+            <div class="cs142-detail-thumbnailWord">The most recently uploaded photo</div>
+            <img ng-src="/images/{{userDetail.mostRecentlyPhoto.file_name}}" class="cs142-detail-thumbnailPhoto"
+                 ng-click="userDetail.showDetail(userDetail.mostRecentlyPhoto)">
+            <div class="cs142-detail-thumbnailDate">{{userDetail.mostRecentlyPhoto.date_time}}</div>
+            <!--<a ng-href="{{'#!/photos/' + userDetail.user._id}}#foo">shit</a>-->
+        </div>
+        <div class="cs142-detail-thumbnail" ng-show="userDetail.mostCommentsPhoto !== undefined">
+            <div class="cs142-detail-thumbnailWord">The photo with the most comments</div>
+            <img ng-src="/images/{{userDetail.mostCommentsPhoto.file_name}}" class="cs142-detail-thumbnailPhoto"
+                 ng-click="userDetail.showDetail(userDetail.mostCommentsPhoto)">
+            <div class="cs142-detail-thumbnailDate">Comments Number: {{userDetail.mostCommentsPhoto.comments.length}}</div>
+        </div>
+    </div>
+
+    <div ng-show="userDetail.hasAuthority()">
+        <md-button ng-click="userDetail.showMention(true)">See All Mentions</md-button>
+        <table class="cs142-detail-table">
+            <tr ng-repeat="mention in userDetail.mentions">
+                <td style="width:10%">
+                    <a ng-href="#!/photos/{{mention.photo_owner}}">
+                        <img ng-src="/images/{{mention.photo_name}}" class="cs142-detail-mentionPhoto"/>
+                    </a>
+                </td>
+                <td style="width:20%">
+                    <a ng-href="#!users/{{mention.caller_id}}" >
+                        <div class="cs142-detail-mentionUser">{{mention.user_first_name}} {{mention.user_last_name}}</div>
+                    </a>
+                </td>
+                <td style="width:65%">
+                    <div class="cs142-detail-mentionUser">{{mention.text}}</div>
+                </td>
+                <td style="width:5%">
+                    <md-button ng-click="userDetail.deleteMention(mention)">Read and Hide</md-button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-show="!userDetail.hasAuthority()">
+        <md-button ng-click="userDetail.chat()">Chat with this friend</md-button>
+    </div>
+    
+
+
+</div>

@@ -1,0 +1,24 @@
+<div layout="column" ng-cloak>
+    <div class="md-toolbar-tools">
+        <span class ="cs142-activity-title">Activities</span>
+    </div>
+    <md-content flex>
+        <md-list>
+            <md-list-item class="md-2-line" ng-repeat="activity in activity.activity_list">
+                <div class = "cs142-activity-activity">
+                    <div>
+                        <h3>{{activity.user_name}} {{activity.activity}}</h3>
+                        <p>at {{activity.date_time}}</p>
+                    </div>
+                    <div ng-show = "activity.recently_upload_photo" class="cs142-activity-photo">
+                        <img ng-src="{{activity.photo_name}}" class="thumbnail">
+                    </div>
+
+                </div>
+                <md-divider inset></md-divider>
+            </md-list-item>
+        </md-list>
+
+    </md-content>
+
+</div>

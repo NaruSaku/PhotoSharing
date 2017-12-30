@@ -1,0 +1,26 @@
+.cs142-favorite-photos{
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.cs142-favorite-photo{
+    margin:20px 30px;
+}
+.cs142-favorite-imgDiv {
+    display: inline-block;
+    position: relative;
+}
+
+.cs142-favorite-delete {
+    position: relative;
+    top: -120px;
+    left: 106px;
+}
+.cs142-favorite-hide{
+    visibility: hidden;
+}
+
+.cs142-favorite-show{
+    visibility: visible;
+}

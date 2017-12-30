@@ -1,0 +1,62 @@
+<div id="cs142-login-login">
+    <h1 style="color:black">Login To See The Photos!</h1>
+    <div class="cs142-login-loginAndRegister">
+        <div class="cs142-login-container">
+            <h2> Login </h2>
+            <form ng-submit="login.submit(myForm1.$valid)" class="cs142-login-information" name="myForm1" novalidate>
+                <input ng-model="login.loginName" name="loginName" placeholder="Username" class="cs142-login-item"/>
+
+                <input ng-model="login.password" name = "password" placeholder="Password" class="cs142-login-item"
+                       ng-maxlength="20" ng-minlength="4" type="password" name="name"/>
+                <label><input type="checkbox" id="save"
+                              title="If you want to use the save password function next time, just choose and leave the password blank"/>
+                    <span style="color:white">Save Password</span>
+                </label>
+                <button class="cs142-login-item">Login</button>
+            </form>
+            <button class="cs142-login-item" ng-click="login.reset()" >Reset</button>
+            <div class="cs142-login-error"> {{login.error}} </div>
+        </div>
+
+        <br>
+
+
+        <div class="cs142-login-container">
+            <h2> New User? </h2>
+            <form ng-submit="register.registerAccount(myForm2.$valid)" class="cs142-login-information" name="myForm2">
+
+                <input ng-model="register.userName" name="userName" placeholder="New User Name" class="cs142-login-item2"
+                       ng-maxlength="20" ng-minlength="3"/>
+
+                <input ng-model="register.firstName" name="firstName" placeholder="First Name" class="cs142-login-item2"/>
+
+                <input ng-model="register.lastName" name="lastName" placeholder="Last Name" class="cs142-login-item2"/>
+
+                <textarea type = "text" ng-model="register.description" name="description" placeholder="Description" class="cs142-login-item2"></textarea>
+
+                <input ng-model="register.location" name="location" placeholder="Location" class="cs142-login-item2"/>
+
+                <input ng-model="register.occupation" name="occupation" placeholder="Occupation" class="cs142-login-item2"/>
+
+                <input ng-model="register.email" name="email" type="email" placeholder="Email" class="cs142-login-item2"/>
+
+                <input ng-model="register.password1" name="password1" placeholder="New Password" class="cs142-login-item2"
+                       ng-maxlength="20" ng-minlength="4" type="password" />
+
+                <input ng-model="register.password2" name = "password2" placeholder="Confirm Password" class="cs142-login-item2"
+                       ng-maxlength="20" ng-minlength="4" type="password"/>
+
+                <!--<button ng-click="register.sendEmail()">Send Email</button>-->
+
+                <button class="cs142-login-item2">Register</button>
+
+            </form>
+
+            <button class="cs142-login-item" ng-click="register.reset()" >Reset</button>
+
+            <div class="cs142-login-error"> {{register.error}} </div>
+
+        </div>
+    </div>
+
+</div>

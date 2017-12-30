@@ -1,0 +1,104 @@
+<div class="cs142-photos-list" ng-cloak>
+    <!--<a ng-click="gotoBottom()">Go to bottom</a>-->
+
+    <div ng-show="userPhotos.noPhotos" class="cs142-photos-noPhotos">Let's upload the photos!</div>
+    <div  ng-repeat="photo in userPhotos.photos" id={{photo._id}} class="cs142-photos-photo">
+        <div class="cs142-photos-photoDate">
+            <div>{{photo.date_time}}</div>
+
+            <div>
+                <select ng-init="selectedPercentage = userPhotos.percentage[0]" ng-model="selectedPercentage" ng-options="x for x in userPhotos.percentage" 
+                ng-change="userPhotos.selectChange(selectedPercentage)"> 
+                </select>
+                <md-button class="md-primary md-raised" ng-if="userPhotos.hasPhotoAuthority(photo)" ng-click="userPhotos.delete($event,photo)">
+                    Delete
+                </md-button>
+                <md-button class="md-primary md-raised" ng-if="!userPhotos.hasPhotoAuthority(photo)" ng-href="/images/{{photo.file_name}}">
+                    Download
+                </md-button>
+            </div>
+            
+        </div>
+
+        <img ng-src="/images/{{photo.file_name}}" id="cs142-photos-image">
+        <!-- <div ng-show="userPhotos.checked" class="cs142-photos-buttons">
+            <button ng-click="userPhotos.previous()">Previous</button>
+            <button ng-click="userPhotos.next()">Next</button>
+        </div> -->
+        <div class="cs142-photos-photoLike">
+            <div class="cs142-photos-like">
+                <img ng-src="/images/like.png" ng-click = "userPhotos.like(photo)">
+                {{photo.like_user_ids.length}}
+            </div>
+            <div class="cs142-photos-like">
+                <img ng-if="!photo.favorite"ng-src="/images/greyheart.png" ng-click = "userPhotos.favorite(photo)">
+                <img ng-if="photo.favorite"ng-src="/images/heart.png" ng-click = "userPhotos.favorite(photo)">
+            </div>
+            <div class="cs142-photos-like">
+                <img ng-src="/images/forward.png" ng-click = "userPhotos.forward(photo)">
+            </div>
+            <div class="cs142-photos-like">
+                <img ng-src="/images/dislike2.png" ng-click = "userPhotos.dislike(photo)">
+                {{photo.dislike_user_ids.length}}
+            </div>
+        </div>
+
+        <div class="cs142-photos-comments">
+            <div class="cs142-photos-commentHead">
+                <div class="cs142-photos-comment2">Comments</div>
+                <div class="cs142-photos-viewTimes">View Times:{{photo.view_times}}</div>  
+            </div>
+
+            <div ng-repeat="comment in photo.comments" class="cs142-photos-comment">
+                <div class="cs142-photos-commentTitle">
+                    <div class="cs142-photos-commentor">
+                        <a ng-href="#!users/{{comment.user._id}}">
+                            {{comment.user.first_name }} {{comment.user.last_name}}
+                        </a>
+                    </div>
+                    <div class="cs142-photos-commentTime">
+                        {{comment.date_time}}
+                    </div>
+                </div>
+                <div class="cs142-photos-content">{{comment.comment}}</div>
+                <md-button class="md-primary md-raised" ng-if="userPhotos.hasCommentAuthority(comment)" ng-click="userPhotos.deleteComment($event,photo,comment)">
+                    Delete Comment
+                </md-button>
+            </div>
+
+            <div class="cs142-photos-addComment">
+               <textarea ng-model="userPhotos.newComment"
+                          placeholder="Add comment"
+                          class="cs142-photos-text"
+                          mentio
+                          mentio-typed-text="typedTerm"
+                          mentio-items="userPhotos.people | filter:label:typedTerm"
+                          mentio-template-url="/people-mentions.tpl"
+                          mentio-search="userPhotos.searchPeople(term)"
+                          mentio-select="userPhotos.getTagTextRaw(item)">
+                </textarea>
+
+                <button class="cs142-photos-deleteComment" ng-click="userPhotos.addComment(photo)">
+                    Submit
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div class="cs142-photos-pagination">
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+    
+</div>
+
+<script type="text/ng-template" id="/people-mentions.tpl">
+    <ul class="user-search list-group">
+        <li mentio-menu-item="person" ng-repeat="person in items" class="list-group-item">
+	        <img ng-src="/images/{{person.profile}}" class="user-photo">
+            <span class="text-primary" ng-bind-html="person.first_name + ' ' + person.last_name | mentioHighlight:typedTerm:'menu-highlighted' | unsafe">
+            </span>
+            <em class="text-primary" ng-bind-html="person.location | mentioHighlight:typedTerm:'menu-highlighted' | unsafe">
+            </em>
+        </li>
+    </ul>
+</script>

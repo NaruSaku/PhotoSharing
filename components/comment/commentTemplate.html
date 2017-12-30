@@ -1,0 +1,30 @@
+<!-- <div ng-repeat="comment in comments.commentList">
+    <div class="cs142-comment-comment">{{comment.comment}}</div>
+    {{comments.photos[$index].file_name}}
+    <img ng-src="/images/{{comments.photos[$index].file_name}}">
+</div> -->
+
+<div layout="column" ng-cloak>
+    <div class="md-toolbar-tools">
+        <span class ="cs142-activity-title">Comments Search</span>
+    </div>
+    <md-content flex>
+        <md-list>
+            <md-list-item class="md-2-line" ng-repeat="comment in comments.commentList">
+                <div class = "cs142-activity-activity" style="justify-content:space-between;width:100%">
+                    <div>
+                        <h3>{{comment.comment}}</h3>
+                        <p>{{comments.photos[$index].file_name}}</p>
+                    </div>
+                    <div class="cs142-activity-photo">
+                        <img ng-src="/images/{{comments.photos[$index].file_name}}" class="thumbnail">
+                    </div>
+
+                </div>
+                <md-divider inset></md-divider>
+            </md-list-item>
+        </md-list>
+
+    </md-content>
+
+</div>

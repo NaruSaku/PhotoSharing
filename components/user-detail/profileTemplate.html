@@ -1,0 +1,28 @@
+<md-dialog aria-label="Profile">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Change Your Profile</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="profile.cancel()">
+                    <img ng-src="images/cross.png" aria-label="Close dialog"></img>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <img style="margin: auto; max-width: 100%;" alt="Profile" ng-src="images/{{profile.photo.file_name}}">
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <form>
+                <div class="file-input" ngf-select="upload($file)"> 
+                  <p class="input-container">       
+                    Choose File
+                  </p>
+                </div>
+            </form>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
